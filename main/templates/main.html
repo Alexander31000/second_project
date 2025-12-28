@@ -2,86 +2,87 @@
 {% load static %}
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MarketPlace — товары</title>
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>MarketPlace — товары</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
 </head>
 <body>
-  <header class="site-header">
+<header class="site-header">
     <div class="header-left">
-      <button id="burgerBtn" class="burger" aria-label="Открыть категории">
-        <span></span><span></span><span></span>
-      </button>
-      <a class="site-logo" href="#">MarketPlace</a>
+        <button id="burgerBtn" class="burger" aria-label="Открыть категории">
+            <span></span><span></span><span></span>
+        </button>
+        <a class="site-logo" href="#">MarketPlace</a>
     </div>
 
     <div class="header-center">
-      <div class="search-wrap">
-        <input id="searchInput" type="search" placeholder="Поиск товаров, брендов..." aria-label="Поиск" />
-        <button id="searchBtn" aria-label="Найти">🔍</button>
-      </div>
+        <div class="search-wrap">
+            <input id="searchInput" type="search" placeholder="Поиск товаров, брендов..." aria-label="Поиск"/>
+            <button id="searchBtn" aria-label="Найти">🔍</button>
+        </div>
     </div>
 
     <div class="header-right">
-      <button id="loginBtn" class="icon-btn" aria-label="Вход в личный кабинет">Вход</button>
-      <button id="cartBtn" class="icon-btn" aria-label="Корзина товаров">
-        🛒 <span id="cartCount" class="cart-count">0</span>
-      </button>
+        <button id="loginBtn" class="icon-btn" aria-label="Вход в личный кабинет">Вход</button>
+        <button id="cartBtn" class="icon-btn" aria-label="Корзина товаров">
+            🛒 <span id="cartCount" class="cart-count">0</span>
+        </button>
     </div>
-  </header>
+</header>
 
-  <nav id="sideCategories" class="side-categories" aria-hidden="true">
+<nav id="sideCategories" class="side-categories" aria-hidden="true">
     <div class="side-header">
-      <h3>Категории</h3>
-      <button id="closeCategories" aria-label="Закрыть">✕</button>
+        <h3>Категории</h3>
+        <button id="closeCategories" aria-label="Закрыть">✕</button>
     </div>
     <ul>
-      <li><a href="#" data-cat="all">Все</a></li>
+        <li><a href="{% url 'main' %}">Все</a></li>
         {% for kategoria in kategorii%}
-      <li><a href="#" data-cat="electronics">{{kategoria}}</a></li>
+        <li><a href="{% url 'kategoria' kategoria.id %}">{{kategoria}}</a></li>
         {% endfor %}
 
     </ul>
-  </nav>
+</nav>
 
-  <main class="main">
+<main class="main">
     <section class="products-section">
-      <h2 class="visually-hidden">Список товаров</h2>
-      <div id="productsGrid" class="products-grid" aria-live="polite">
-      {% for tovars in tovars%}
-          <article class="product-card">
-      <img class="product-image" alt="Футболка премиум 2" src="https://via.placeholder.com/600x400.png?text=%D0%A4%D1%83%D1%82%D0%B1%D0%BE%D0%BB%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B5%D0%BC%D0%B8%D1%83%D0%BC%202">
-      <div class="product-info">
-        <h3 class="product-title">{{tovars}}</h3>
-        <p class="product-price">99.11 ₽</p>
-        <div class="product-actions">
+        <h2 class="visually-hidden">Список товаров</h2>
+        <div id="productsGrid" class="products-grid" aria-live="polite">
+            {% for tovars in tovars%}
+            <article class="product-card">
+                <img class="product-image" alt="tovars.title"
+                     src="{{tovars.img.url}}">
+                <div class="product-info">
+                    <h3 class="product-title">{{tovars}}</h3>
+                    <p class="product-price">{{tovars.prise}} byn. </p>
+                    <div class="product-actions">
 
-          <button class="add-cart">Добавить в корзину</button>
-          <button class="view-btn">Подробнее</button>
+                        <button class="add-cart">Добавить в корзину</button>
+                        <a href = "#" class="view-btn">Подробнее</a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
         </div>
-      </div>
-    </article>
-          {% endfor %}
-      </div>
     </section>
-  </main>
+</main>
 
-  <template id="productTemplate">
+<template id="productTemplate">
     <article class="product-card">
-      <img class="product-image" alt="" />
-      <div class="product-info">
-        <h3 class="product-title"></h3>
-        <p class="product-price"></p>
-        <div class="product-actions">
-          <button class="add-cart">Добавить в корзину</button>
-          <button class="view-btn">Подробнее</button>
+        <img class="product-image" alt=""/>
+        <div class="product-info">
+            <h3 class="product-title"></h3>
+            <p class="product-price"></p>
+            <div class="product-actions">
+                <button class="add-cart">Добавить в корзину</button>
+                <button class="view-btn">Подробнее</button>
+            </div>
         </div>
-      </div>
     </article>
-  </template>
+</template>
 
-  <script src="{% static 'js/script.js'%}" defer></script>
+<script src="{% static 'js/script.js'%}" defer></script>
 
 </body>
 </html>

@@ -94,15 +94,15 @@ function filterProducts({query = '', category = 'all'} = {}){
 }
 
 // Категории клики
-document.querySelectorAll('#sideCategories a').forEach(a => {
-  a.addEventListener('click', (e) => {
-    e.preventDefault();
-    const cat = a.dataset.cat || 'all';
-    const list = filterProducts({category: cat, query: searchInput.value});
-    renderProducts(list);
-    closeSide();
-  });
-});
+//document.querySelectorAll('#sideCategories a').forEach(a => {
+//  a.addEventListener('click', (e) => {
+//    e.preventDefault();
+//    const cat = a.dataset.cat || 'all';
+//    const list = filterProducts({category: cat, query: searchInput.value});
+//    renderProducts(list);
+//    closeSide();
+//  });
+//});
 
 // Поиск
 function doSearch(){
