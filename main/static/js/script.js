@@ -126,11 +126,11 @@ function updateCartUI(){
 }
 
 // Инициализация страницы
-function init(){
-  renderProducts(products);
-  updateCartUI();
-}
-init();
+//function init(){
+//  renderProducts(products);
+//  updateCartUI();
+//}
+//init();
 
 // Дополнительная мелкая логика: показать подсказку при клике на корзину
 cartBtn.addEventListener('click', () => {

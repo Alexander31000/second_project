@@ -18,6 +18,11 @@ class Tovar(models.Model):
     def __str__(self):
         return self.title
 
+class TovarImage(models.Model):
+    img = models.ImageField(upload_to = 'tovar_image')
+    tovar = models.ForeignKey(Tovar, on_delete=models.CASCADE)
+
+
 
 
 

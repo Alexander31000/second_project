@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}Добавить товар{% endblock %}
+
+{% block main %}
+<div class="main" style="display: flex; align-items: center; flex-direction: column">
+<h1>Добавить товар</h1>
+
+{# Общие ошибки формы #}
+{% if form.non_field_errors %}
+<div class="alert alert-danger">
+    {{ form.non_field_errors }}
+</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+
+    {# Превью выбранного изображения #}
+    <div id="img-preview" style="margin-top:10px;">
+        <img id="preview-img" src="" alt="" style="max-width:300px; display:none; border:1px solid #ddd; padding:4px;">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    {#<a href="{% url 'tovar_list' %}" class="btn btn-secondary">Отмена</a>#}
+</form>
+    </div>
+{% endblock main %}
+{% block js %}
+{# JS для превью изображения. Можно убрать если не нужен #}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileInput = document.getElementById('{{ form.img.id_for_label }}') || document.querySelector('input[type="file"][name="{{ form.img.name }}"]');
+        const previewImg = document.getElementById('preview-img');
+
+        if (!fileInput) return;
+
+        fileInput.addEventListener('change', function (e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) {
+                previewImg.style.display = 'none';
+                previewImg.src = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                previewImg.src = ev.target.result;
+                previewImg.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
+{% endblock js %}

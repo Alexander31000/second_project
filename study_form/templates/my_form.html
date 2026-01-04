@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Формы</h1>
+{% if errors %}
+{% for error in errors%}
+<p style = "color:red;"> {{error}}</p>
+{% endfor %}
+{% endif %}
+
+
+<form action="" method="POST" style = "display: flex; flex-direction: column; gap: 5px; max-width: 200px;">
+    {% csrf_token %}
+    <input type="text" name = 'first_name' placeholder = 'Имя' required>
+    <input type="text" name = 'last_name' placeholder = 'Фамилия' required>
+    <input type="number" name = 'age' placeholder = 'Возраст' required>
+    <button>Отправить</button>
+<div>
+
+    <p style = "color:green;">{{ last_author }} {{last_author.age}}</p>
+    {% for author in authors%}
+    {% if last_author != author %}
+        <p>{{author.first_name}} {{author.last_name}} {{author.age}}</p>
+    {% endif %}
+    {% endfor %}
+
+</div>
+
+    {% comment %}
+    другой вариант вывода авторов с конца и покраской последнего в цвет
+
+
+    {% for author in authors%}
+    {% if forloop.counter == 1 %}
+    <p style = "color:green;">{{ last_author }} {{last_author.age}}</p>
+    {% else %}
+    <p>{{author.first_name}} {{author.last_name}} {{author.age}}</p>
+    {% endif %}
+    {% endfor %}
+
+
+
+    {% endcomment %}
+</form>
+</body>
+</html>

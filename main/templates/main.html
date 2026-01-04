@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>MarketPlace — товары</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    {% block css %}
+    {% endblock css %}
 </head>
 <body>
 <header class="site-header">
@@ -13,7 +15,7 @@
         <button id="burgerBtn" class="burger" aria-label="Открыть категории">
             <span></span><span></span><span></span>
         </button>
-        <a class="site-logo" href="#">MarketPlace</a>
+        <a class="site-logo" href="{% url 'main' %}">MarketPlace</a>
     </div>
 
     <div class="header-center">
@@ -45,6 +47,7 @@
     </ul>
 </nav>
 
+{% block main %}
 <main class="main">
     <section class="products-section">
         <h2 class="visually-hidden">Список товаров</h2>
@@ -59,7 +62,7 @@
                     <div class="product-actions">
 
                         <button class="add-cart">Добавить в корзину</button>
-                        <a href = "#" class="view-btn">Подробнее</a>
+                        <a href = "{% url 'kartochka' tovars.id %}" class="view-btn">Подробнее</a>
                     </div>
                 </div>
             </article>
@@ -68,6 +71,47 @@
     </section>
 </main>
 
+{% endblock main %}
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a class="site-logo" href="{% url 'main' %}">
+        <img src="{% static 'img/logo.svg' %}" alt="MarketPlace" width="120" height="24">
+      </a>
+      <p class="muted">Маркетплейс товаров — быстрая доставка и проверенные продавцы.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Покупателям</h4>
+      <ul>
+        <li><a href="#">Доставка</a></li>
+        <li><a href="#">Возврат</a></li>
+        <li><a href="#">Вопросы и ответы</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>О нас</h4>
+      <ul>
+        <li><a href="#">О компании</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Условия использования</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Следите за нами</h4>
+      <ul class="social">
+        <li><a href="#" rel="noopener">Telegram</a></li>
+        <li><a href="#" rel="noopener">VK</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <small>© {% now "Y" %} MarketPlace. Все права защищены.</small>
+  </div>
+</footer>
 <template id="productTemplate">
     <article class="product-card">
         <img class="product-image" alt=""/>
@@ -83,6 +127,8 @@
 </template>
 
 <script src="{% static 'js/script.js'%}" defer></script>
+{% block js %}
+{% endblock js %}
 
 </body>
 </html>

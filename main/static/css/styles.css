@@ -225,3 +225,15 @@ body{
   .search-wrap input{min-width:120px}
   .site-header{padding:10px}
 }
+
+
+.site-header{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 18px; background:#fff; border-bottom:1px solid rgba(0,0,0,0.04); position:sticky; top:0; z-index:40; }
+.header-left, .header-center, .header-right{ display:flex; align-items:center; gap:12px; }
+.side-overlay{ position:fixed; inset:0; background:rgba(2,6,23,0.35); opacity:0; pointer-events:none; transition:opacity .22s ease; z-index:45; }
+.side-overlay.open{ opacity:1; pointer-events:auto; }
+.site-footer{ border-top:1px solid rgba(0,0,0,0.04); padding:20px 16px; background:#fff; }
+.footer-inner{ max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; align-items:start; }
+.footer-col h4{ margin:0 0 8px 0; }
+.footer-bottom{ text-align:center; padding-top:12px; color:#6b7280; }
+@media (max-width:900px){ .footer-inner{ grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .footer-inner{ grid-template-columns:1fr; } }
