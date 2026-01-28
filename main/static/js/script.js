@@ -133,11 +133,11 @@ function updateCartUI(){
 //init();
 
 // Дополнительная мелкая логика: показать подсказку при клике на корзину
-cartBtn.addEventListener('click', () => {
-  const total = Object.values(cart).reduce((s,n) => s + n, 0);
-  if (total === 0) {
-    alert('Корзина пуста. Добавьте товары, нажав "Добавить в корзину".');
-  } else {
-    alert(`В корзине ${total} товар(ов).`);
-  }
-});
+//cartBtn.addEventListener('click', () => {
+//  const total = Object.values(cart).reduce((s,n) => s + n, 0);
+//  if (total === 0) {
+//    alert('Корзина пуста. Добавьте товары, нажав "Добавить в корзину".');
+//  } else {
+//    alert(`В корзине ${total} товар(ов).`);
+//  }
+//});

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class = "" style = "display: flex; gap: 30px;">
+<form action="" method = "POST" enctype = 'multipart/form-data'>
+    {%csrf_token%}
+    <table>{{form.as_table}}</table>
+    <button> Отправить</button>
+</form>
+<form action="">
+    <table>{{form2.as_table}}</table>
+    <button> Отправить</button>
+</form>
+</div>
+</body>
+
+</html>

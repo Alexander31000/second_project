@@ -5,7 +5,7 @@
 
 {% block main %}
 <div class="main" style="display: flex; align-items: center; flex-direction: column">
-<h1>Добавить товар</h1>
+<h1>Редактор</h1>
     
 
 {# Общие ошибки формы #}
@@ -20,6 +20,7 @@
     <table>
         {{form.as_table}}
     </table>
+   <table>{{form_set.as_table}}</table>
 
     {# Превью выбранного изображения #}
     <div id="img-preview" style="margin-top:10px;">

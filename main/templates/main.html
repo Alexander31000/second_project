@@ -26,10 +26,16 @@
     </div>
 
     <div class="header-right">
-        <button id="loginBtn" class="icon-btn" aria-label="Вход в личный кабинет">Вход</button>
-        <button id="cartBtn" class="icon-btn" aria-label="Корзина товаров">
-            🛒 <span id="cartCount" class="cart-count">0</span>
-        </button>
+        {% if user.is_authenticated %}
+        <a href="#" id="loginBtn" class="icon-btn" aria-label="Вход в личный кабинет">привет, {{user.username}}</a>
+        <a href="{% url 'log_out' %}" id="loginBtn" class="icon-btn" aria-label="Вход в личный кабинет">выйти</a>
+        {% else %}
+        <a href="{% url 'login'%}" id="loginBtn" class="icon-btn" aria-label="Вход в личный кабинет">Вход</a>
+        {% endif %}
+        <a id="cartBtn" class="icon-btn" href="{% url 'cart_detail'%}" aria-label="Корзина товаров">
+            🛒 <span id="cartCount" class="cart-count" aria-live="polite">{{ cart|length }}</span>
+        </a>
+
     </div>
 </header>
 
@@ -62,7 +68,7 @@
                     <div class="product-actions">
 
                         <button class="add-cart">Добавить в корзину</button>
-                        <a href = "{% url 'kartochka' tovars.id %}" class="view-btn">Подробнее</a>
+                        <a href="{% url 'kartochka' tovars.id %}" class="view-btn">Подробнее</a>
                     </div>
                 </div>
             </article>
@@ -73,44 +79,44 @@
 
 {% endblock main %}
 <footer class="site-footer" role="contentinfo">
-  <div class="footer-inner">
-    <div class="footer-col">
-      <a class="site-logo" href="{% url 'main' %}">
-        <img src="{% static 'img/logo.svg' %}" alt="MarketPlace" width="120" height="24">
-      </a>
-      <p class="muted">Маркетплейс товаров — быстрая доставка и проверенные продавцы.</p>
+    <div class="footer-inner">
+        <div class="footer-col">
+            <a class="site-logo" href="{% url 'main' %}">
+                <img src="{% static 'img/logo.svg' %}" alt="MarketPlace" width="120" height="24">
+            </a>
+            <p class="muted">Маркетплейс товаров — быстрая доставка и проверенные продавцы.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Покупателям</h4>
+            <ul>
+                <li><a href="#">Доставка</a></li>
+                <li><a href="#">Возврат</a></li>
+                <li><a href="#">Вопросы и ответы</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>О нас</h4>
+            <ul>
+                <li><a href="#">О компании</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#">Условия использования</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Следите за нами</h4>
+            <ul class="social">
+                <li><a href="#" rel="noopener">Telegram</a></li>
+                <li><a href="#" rel="noopener">VK</a></li>
+            </ul>
+        </div>
     </div>
 
-    <div class="footer-col">
-      <h4>Покупателям</h4>
-      <ul>
-        <li><a href="#">Доставка</a></li>
-        <li><a href="#">Возврат</a></li>
-        <li><a href="#">Вопросы и ответы</a></li>
-      </ul>
+    <div class="footer-bottom">
+        <small>© {% now "Y" %} MarketPlace. Все права защищены.</small>
     </div>
-
-    <div class="footer-col">
-      <h4>О нас</h4>
-      <ul>
-        <li><a href="#">О компании</a></li>
-        <li><a href="#">Контакты</a></li>
-        <li><a href="#">Условия использования</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Следите за нами</h4>
-      <ul class="social">
-        <li><a href="#" rel="noopener">Telegram</a></li>
-        <li><a href="#" rel="noopener">VK</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <small>© {% now "Y" %} MarketPlace. Все права защищены.</small>
-  </div>
 </footer>
 <template id="productTemplate">
     <article class="product-card">

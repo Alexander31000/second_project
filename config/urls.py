@@ -23,7 +23,8 @@ from config import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('form/', include('study_form.urls'))
+    path('form/', include('study_form.urls')),
+    path('cart/',include('cart.urls'))
 ]
 
 if settings.DEBUG:
