@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'study_form',
-    'cart'
+    'cart',
+    'orders',
+    'rest_framework',
 
 ]
 

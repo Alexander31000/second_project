@@ -1,0 +1,28 @@
+
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}Вход — MarketPlace{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+    {% endblock css %}
+
+{% block main %}
+<main class="main">
+    <div class="auth-container">
+        <h2 class="auth-title">Редактирование</h2>
+
+        <form class="auth-form" method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            <button class="icon-btn">Изменить </button>
+            <a href="{% url 'main'%}" id="loginBtn" class="icon-btn" aria-label="Вход в личный кабинет">Вернуться на главную</a>
+        </form>
+
+        <div class="auth-footer">
+            <p>Нет аккаунта? <a href="{% url 'registr' %}">Зарегистрироваться</a></p>
+        </div>
+    </div>
+</main>
+{% endblock %}

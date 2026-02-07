@@ -63,6 +63,10 @@ class LoginForm(forms.Form):
     username = forms.CharField(max_length=150)
     password = forms.CharField(max_length=150, widget = forms.PasswordInput)
 
+class ChangeCredentionalForm(forms.Form):
+    username = forms.CharField(max_length=150, required=False)
+    password = forms.CharField(max_length=150, widget = forms.PasswordInput, required=False)
+
 
 
 class RegistrForm(forms.Form):

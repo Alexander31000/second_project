@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from cart.forms import CartAddProductForm
 from main import forms
 from main.forms import TovarForm, RedaktorTovarForm, RedaktorTovarImageForm, TovarImageForm, TovarModelForm, LoginForm, \
-    RegistrForm
+    RegistrForm, ChangeCredentionalForm
 from main.models import Tovar, Kategoria, TovarImage
 
 
@@ -16,7 +16,7 @@ def get_main_page(request):
     kategoriii = Kategoria.objects.all()
     tovars = Tovar.objects.all()
     request.session['key'] = 'hi'
-    print(request.session['key'])
+
 
     context = {'tovars': tovars, 'kategorii': kategoriii}
     return render(request, 'main.html', context)
@@ -163,6 +163,30 @@ def login_page(request):
     }
     return render(request, 'login.html', context)
 
+def redactor_user(request):
+
+    user = request.user
+    form = ChangeCredentionalForm(initial={"username":user.username})
+
+
+    if request.method == 'POST':
+        form = ChangeCredentionalForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            if username != user.username:
+                user.username = username
+                print(username)
+            if password:
+                user.set_password(password)
+                print(user.check_password(password))
+            user.save()
+
+    context = {
+        'form':form
+    }
+
+    return render(request, 'redactor_user.html', context)
 
 
 def registracia_page(request):
@@ -187,3 +211,6 @@ def registracia_page(request):
 def log_out(request):
     logout(request)
     return redirect('main')
+
+
+

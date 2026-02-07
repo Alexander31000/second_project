@@ -14,6 +14,7 @@ class Tovar(models.Model):
     prise = models.DecimalField(max_digits=10, decimal_places=2)
     opisanie = models.TextField()
     kategoria = models.ForeignKey(Kategoria,on_delete=models.CASCADE)
+    rating = models.IntegerField()
 
     def __str__(self):
         return self.title

@@ -22,9 +22,13 @@ from config import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
     path('', include('main.urls')),
     path('form/', include('study_form.urls')),
-    path('cart/',include('cart.urls'))
+    path('cart/',include('cart.urls')),
+    path('orders/', include('orders.urls')),
+
+
 ]
 
 if settings.DEBUG:
